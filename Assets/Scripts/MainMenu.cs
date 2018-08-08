@@ -14,8 +14,8 @@ public class MainMenu : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.I)){
-			Debug.Log("CACONa");
-			SceneManager.LoadScene("Game");
+			Debug.Log("Load next Scene");
+			// SceneManager.LoadScene("Game");
 		}
 	}
 }
