@@ -25,6 +25,7 @@ public class MainMenu : MonoBehaviour {
 				Debug.Log("Cant, need coins.");
 			} else {
 				Debug.Log("Load next scene.");
+				SceneManager.LoadScene("Game", LoadSceneMode.Single);
 				// SceneManager.LoadScene("Game");
 			}
 		}
