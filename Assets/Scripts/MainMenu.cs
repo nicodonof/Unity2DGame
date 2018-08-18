@@ -18,6 +18,7 @@ public class MainMenu : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.C)){
 			c++;
 			GameObject.Find("Coins").GetComponent<Text>().text = c.ToString();
+			GetComponent<AudioSource>().Play();
 		}
 		
 		if(Input.GetKeyDown(KeyCode.Return)){
