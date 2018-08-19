@@ -7,4 +7,3 @@ Sound effects made with bfxr
 
 ## Visuals
 Visuals made with Aseprite
-
