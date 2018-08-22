@@ -359,51 +359,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 669070036}
   m_CullTransparentMesh: 0
---- !u!1 &747115850 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1541015825153102, guid: b19e173bb85ac264384dc8a3933b2628,
-    type: 2}
-  m_PrefabInternal: {fileID: 2119651981}
---- !u!95 &747115851
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 747115850}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fd43b7699b2b5a2459a176bb0e08d721, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!320 &747115852
-PlayableDirector:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 747115850}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 9b497092c2fdf8648b2c846c616bb335, type: 2}
-  m_InitialState: 1
-  m_WrapMode: 2
-  m_DirectorUpdateMode: 1
-  m_InitialTime: 1
-  m_SceneBindings:
-  - key: {fileID: 114104896236692884, guid: 9b497092c2fdf8648b2c846c616bb335, type: 2}
-    value: {fileID: 747115851}
-  - key: {fileID: 0}
-    value: {fileID: 747115850}
-  - key: {fileID: 0}
-    value: {fileID: 669070036}
-  m_ExposedReferences:
-    m_References: []
 --- !u!1 &1421867513
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,37 +817,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 224907470665694036, guid: b19e173bb85ac264384dc8a3933b2628,
+    - target: {fileID: 320324769270672746, guid: b19e173bb85ac264384dc8a3933b2628,
         type: 2}
-      propertyPath: m_LocalScale.x
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 224907470665694036, guid: b19e173bb85ac264384dc8a3933b2628,
-        type: 2}
-      propertyPath: m_LocalScale.y
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 212966737333080250, guid: b19e173bb85ac264384dc8a3933b2628,
-        type: 2}
-      propertyPath: m_Sprite
+      propertyPath: m_SceneBindings.Array.data[2].value
       value: 
-      objectReference: {fileID: 21300000, guid: 008f532d1283e214cb1551796eea3a3c,
-        type: 3}
-    - target: {fileID: 212966737333080250, guid: b19e173bb85ac264384dc8a3933b2628,
-        type: 2}
-      propertyPath: m_FlipX
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 212966737333080250, guid: b19e173bb85ac264384dc8a3933b2628,
-        type: 2}
-      propertyPath: m_FlipY
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224907470665694036, guid: b19e173bb85ac264384dc8a3933b2628,
-        type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 669070036}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19e173bb85ac264384dc8a3933b2628, type: 2}
   m_IsPrefabAsset: 0
