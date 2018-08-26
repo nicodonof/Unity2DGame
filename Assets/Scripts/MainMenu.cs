@@ -8,6 +8,9 @@ public class MainMenu : MonoBehaviour {
 	int c;
 	public int minC = 2;
 
+	public AudioSource start;
+	public AudioSource cant;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -17,17 +20,21 @@ public class MainMenu : MonoBehaviour {
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.C)){
 			c++;
-			GameObject.Find("Coins").GetComponent<Text>().text = c.ToString();
+			LocalStorage.coins = c;
+			GameObject.Find("Coins").GetComponent<Text>().text = LocalStorage.coins.ToString();
 			GetComponent<AudioSource>().Play();
 		}
 		
 		if(Input.GetKeyDown(KeyCode.Return)){
 			if(c < minC){
 				Debug.Log("Cant, need coins.");
+				cant.Play();
 			} else {
-				Debug.Log("Load next scene.");
+				c -= minC;
+                LocalStorage.coins = c;
+				GameObject.Find("Coins").GetComponent<Text>().text = c.ToString();
+				start.Play();
 				SceneManager.LoadScene("Game", LoadSceneMode.Single);
-				// SceneManager.LoadScene("Game");
 			}
 		}
 
