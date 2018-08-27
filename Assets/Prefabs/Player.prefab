@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1757617113530394}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.63, y: 1.1756401, z: 0.02327237}
+  m_LocalPosition: {x: -2.857143, y: -2.857143, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -112,12 +112,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tryAgain: {fileID: 0}
-  initCd: 0.75
-  grid: 1.7
+  initCd: 0.1
+  grid: 1.4
   tail: {fileID: 1191304292231034, guid: 5cedafe5420f7044cbfe34af9ee006e0, type: 2}
-  score: 0
-  isDead: 0
+  score: 876
+  isDead: 1
   scoreDisplay: {fileID: 0}
+  initPos: {x: 0, y: 0, z: 0}
+  cant: {fileID: 0}
+  start: {fileID: 0}
+  coin: {fileID: 0}
 --- !u!212 &212800592856390798
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -20,6 +20,9 @@ public class Movement : MonoBehaviour {
 	List<GameObject> tails;
 	private int newDirection; //0 right, 1 left, 2 up, 3 bottom
 	private Vector3 newVector;
+	public AudioSource cant;
+	public AudioSource start;
+	public AudioSource coin;
 
 	private int tailCount;
 
@@ -104,9 +107,17 @@ public class Movement : MonoBehaviour {
 
 		if (isDead) {
 			if (Input.GetKeyDown(KeyCode.Return)) {
-				Restart();
-				isDead = false;
+				if (LocalStorage.coins >= 2) {
+					Restart();
+					isDead = false;
+				} else {
+					cant.Play();
+				}
 				return;
+			}
+			if (Input.GetKeyDown(KeyCode.C)) {
+				LocalStorage.coins++;
+				coin.Play();
 			}
 		}
 		if (Input.GetAxis("Horizontal") > 0 && direction.x == 0) {
@@ -138,7 +149,6 @@ public class Movement : MonoBehaviour {
 		    isDead = true;
 		    tryAgain.SetActive(true);
 	    }
-//		collision.gameObject.transform.position = new Vector3(0,0,0);
 	}
 
 	void OnTriggerEnter2D(Collider2D collider){
