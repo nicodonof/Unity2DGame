@@ -10,7 +10,7 @@ public class Movement : MonoBehaviour {
 	public GameObject tryAgain;
     public float initCd = 0.75f;
     float cd;
-    public float grid = 1.5f;
+    public float grid = 1.75f;
 	public GameObject tail;
 	public int score;
 	public bool isDead;
@@ -90,6 +90,7 @@ public class Movement : MonoBehaviour {
 			score++;
 			cd = Math.Max(0.2f ,initCd - ( score / 10000f ));
 			scoreDisplay.GetComponent<Text>().text = score.ToString();
+			addTail();
 
 			if(tails.Count > tailCount){
 				GameObject toDel = tails[0];
