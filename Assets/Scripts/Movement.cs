@@ -16,11 +16,12 @@ public class Movement : MonoBehaviour {
 	public bool isDead;
 	public GameObject scoreDisplay;
 	public Vector3 initPos;
-
 	private int currDir;
 	List<GameObject> tails;
 	private int newDirection; //0 right, 1 left, 2 up, 3 bottom
 	private Vector3 newVector;
+
+	private int tailCount;
 
 	void Start () {
         direction = new Vector3(1, 0, 0);
@@ -32,6 +33,7 @@ public class Movement : MonoBehaviour {
 		tryAgain = Instantiate(tryAgain);
 		tryAgain.SetActive(false);
 		isDead = false;
+		tailCount = 0;
 	}
 
 	void Restart() {
@@ -48,44 +50,48 @@ public class Movement : MonoBehaviour {
 		transform.position = initPos;
 		tryAgain.SetActive(false);
 		scoreDisplay.GetComponent<Text>().text = "0";
+		tailCount = 0;
 	}
 
 	// Update is called once per frame
 	void Update () {
 		if(cd <= 0 && !isDead) {
 			switch (newDirection) {
-					case 0:
-						if (currDir != 1) {
-							direction = newVector;
-							currDir = newDirection;
-						}
-						break;
-					case 1:
-						if (currDir != 0) {
-							direction = newVector;
-							currDir = newDirection;
-						}
-						break;
-					case 2:
-						if (currDir != 3) {
-							direction = newVector;
-							currDir = newDirection;
-						}
-						break;
-					case 3:
-						if (currDir != 2) {
-							direction = newVector;
-							currDir = newDirection;
-						}
-						break;
+				case 0:
+					if (currDir != 1) {
+						direction = newVector;
+						currDir = newDirection;
+					}
+					break;
+				case 1:
+					if (currDir != 0) {
+						direction = newVector;
+						currDir = newDirection;
+					}
+					break;
+				case 2:
+					if (currDir != 3) {
+						direction = newVector;
+						currDir = newDirection;
+					}
+					break;
+				case 3:
+					if (currDir != 2) {
+						direction = newVector;
+						currDir = newDirection;
+					}
+					break;
 			}
-			addTail();
+			// if(addTailNextFrame) {
+				addTail();
+				// addTailNextFrame = false;
+			// }
 			transform.position += direction / grid;
 			score++;
 			cd = Math.Max(0.2f ,initCd - ( score / 10000f ));
 			scoreDisplay.GetComponent<Text>().text = score.ToString();
 
-			if(tails.Count > 100){
+			if(tails.Count > tailCount){
 				GameObject toDel = tails[0];
 				tails.RemoveAt(0);
 				DestroyImmediate(toDel);
@@ -137,7 +143,7 @@ public class Movement : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D collider){
 		if(collider.gameObject.CompareTag("Fruit") && collider.gameObject.activeSelf){
 			collider.gameObject.SetActive(false);
-			this.addTail();
+			tailCount++;
 		}
 	}
 }
