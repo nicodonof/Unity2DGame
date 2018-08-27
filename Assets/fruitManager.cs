@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class fruitManager : MonoBehaviour {
 
-	GameObject fruit;
+	public GameObject fruit;
 
 	// Use this for initialization
 	void Start () {
-		this.fruit = GameObject.Find("Fruit");
+		this.fruit = Instantiate(fruit);
 	}
 
 	// Update is called once per frame

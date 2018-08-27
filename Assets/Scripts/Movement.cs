@@ -22,8 +22,6 @@ public class Movement : MonoBehaviour {
 	private int newDirection; //0 right, 1 left, 2 up, 3 bottom
 	private Vector3 newVector;
 
-	GameObject fruit;
-
 	void Start () {
         direction = new Vector3(1, 0, 0);
 		newVector = direction;
@@ -31,7 +29,6 @@ public class Movement : MonoBehaviour {
 		currDir = 0;
         cd = initCd;
 		tails = new List<GameObject>();
-		this.fruit = GameObject.Find("Fruit");
 		tryAgain = Instantiate(tryAgain);
 		tryAgain.SetActive(false);
 		isDead = false;
@@ -56,7 +53,6 @@ public class Movement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(cd <= 0 && !isDead) {
-			this.checkForFruit();
 			switch (newDirection) {
 					case 0:
 						if (currDir != 1) {
@@ -138,16 +134,10 @@ public class Movement : MonoBehaviour {
 //		collision.gameObject.transform.position = new Vector3(0,0,0);
 	}
 
-	private void checkForFruit(){
-		if(this.fruit.activeSelf
-			&& this.inRange(this.transform.position.x, this.fruit.transform.position.x)
-			&& this.inRange(this.transform.position.y, this.fruit.transform.position.y)){
-			this.fruit.SetActive(false);
+	void OnTriggerEnter2D(Collider2D collider){
+		if(collider.gameObject.CompareTag("Fruit") && collider.gameObject.activeSelf){
+			collider.gameObject.SetActive(false);
 			this.addTail();
 		}
-	}
-
-	private bool inRange(float position1, float position2){
-		return (position1 <= position2 + 0.25f) && (position1 >= position2 - 0.25f);
 	}
 }
