@@ -85,15 +85,11 @@ public class Movement : MonoBehaviour {
 					}
 					break;
 			}
-			// if(addTailNextFrame) {
-				addTail();
-				// addTailNextFrame = false;
-			// }
+			addTail();
 			transform.position += direction / grid;
 			score++;
 			cd = Math.Max(0.2f ,initCd - ( score / 10000f ));
 			scoreDisplay.GetComponent<Text>().text = score.ToString();
-			addTail();
 
 			if(tails.Count > tailCount){
 				GameObject toDel = tails[0];
@@ -142,6 +138,7 @@ public class Movement : MonoBehaviour {
         GameObject aux = Instantiate(tail);
         aux.transform.position = transform.position;
         tails.Add(aux);
+//	    tailCount++;
     }
 
     void OnCollisionEnter2D(Collision2D collision){
