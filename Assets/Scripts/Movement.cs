@@ -14,7 +14,7 @@ public class Movement : MonoBehaviour {
 	public GameObject tail;
 	public int score;
 	public bool isDead;
-	public GameObject scoreDisplay;
+	GameObject scoreDisplay;
 	private Vector3 initPos;
 	private int currDir;
 	List<GameObject> tails;
@@ -38,6 +38,7 @@ public class Movement : MonoBehaviour {
 		tryAgain.SetActive(false);
 		tailCount = 0;
 		initPos = new Vector3(1/3f-0.15f, 1/3f-0.15f, 0f);
+		scoreDisplay = GameObject.Find("Score");
 	}
 
 	void Restart() {
