@@ -1,25 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class fruitManager : MonoBehaviour {
 
 	public GameObject fruit;
 
-	// Use this for initialization
+
 	void Start () {
-		this.fruit = Instantiate(fruit);
+		fruit = Instantiate(fruit);
+		fruit.transform.position = new Vector3(Random.Range(-19, 19)/3f-0.15f, Random.Range(-14, 14)/3f-0.15f, 0);
+
 	}
+	// Use this for initialization
 
 	// Update is called once per frame
 	void Update () {
-		this.newFruitIfNeeded();
+		newFruitIfNeeded();
 	}
 
- 	void newFruitIfNeeded(){
-		if(!this.fruit.activeSelf){
-			this.fruit.transform.position = new Vector3(Random.Range(-2.0f, 2.0f), Random.Range(-2.0f, 2.0f), 0);
-			this.fruit.SetActive(true);
+ 	void newFruitIfNeeded() {
+		if(!fruit.activeSelf){
+			fruit.transform.position = new Vector3(Random.Range(-19, 19)/3f-0.15f, Random.Range(-14, 14)/3f-0.15f, 0);
+			fruit.SetActive(true);
 		}
  }
 }
