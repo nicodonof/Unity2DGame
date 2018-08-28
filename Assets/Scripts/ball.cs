@@ -6,7 +6,7 @@ public class ball : MonoBehaviour {
 
 	Vector3 direction;
 
-	public float speed = 0.75f;
+	public float speed = 0.5f;
 
 	// Use this for initialization
 	void Start () {
@@ -15,6 +15,7 @@ public class ball : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        // speed = Mathf.Min(1f, speed - (score / 10000f))
 		transform.position += speed * Time.deltaTime * direction;
 	}
 
