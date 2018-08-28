@@ -7,7 +7,10 @@ public class ball : MonoBehaviour {
 	Vector3 direction;
 
 	public float speed = 0.5f;
-	public GameObject wall;
+
+	public GameObject tryAgain;
+
+	public bool isDead;
 
 	// Use this for initialization
 	void Start () {
@@ -17,7 +20,9 @@ public class ball : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         // speed = Mathf.Min(1f, speed - (score / 10000f))
-		transform.position += speed * Time.deltaTime * direction;
+		if(!GameObject.Find("Player").GetComponent<Movement>().isDead){
+			transform.position += speed * Time.deltaTime * direction;
+		}
 	}
 
 	private void OnCollisionEnter2D(Collision2D other) {
@@ -58,7 +63,12 @@ public class ball : MonoBehaviour {
 				else
 					direction = new Vector3(1f, -1f, 0);
 			}
-			other.gameObject.SetActive(false);
+			if(((SpriteRenderer) other.gameObject.GetComponent("SpriteRenderer")).color == Color.clear){
+				GameObject.Find("Player").GetComponent<Movement>().isDead = true;
+				tryAgain.SetActive(true);
+			}else{
+				((SpriteRenderer) other.gameObject.GetComponent("SpriteRenderer")).color = Color.clear;
+			}
 		} else {
 			if(direction == new Vector3(1f,1f,0)){
 				if((transform.position.y > otherMinY && transform.position.y < otherMaxY))

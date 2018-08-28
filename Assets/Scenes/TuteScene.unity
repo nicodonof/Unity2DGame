@@ -376,7 +376,7 @@ Prefab:
       objectReference: {fileID: 969475737}
     - target: {fileID: 1757617113530394, guid: 3b7ec5a3ab9e77f4d881f8b6ad61177c, type: 2}
       propertyPath: m_Name
-      value: Player (1)
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 114992158718600492, guid: 3b7ec5a3ab9e77f4d881f8b6ad61177c,
         type: 2}
@@ -398,6 +398,11 @@ Prefab:
       propertyPath: walls.Array.data[3]
       value: 
       objectReference: {fileID: 907366709}
+    - target: {fileID: 114992158718600492, guid: 3b7ec5a3ab9e77f4d881f8b6ad61177c,
+        type: 2}
+      propertyPath: isDead
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b7ec5a3ab9e77f4d881f8b6ad61177c, type: 2}
   m_IsPrefabAsset: 0
@@ -560,7 +565,7 @@ Prefab:
     - target: {fileID: 114819067687274906, guid: eb02b3f59b650364381d5813fdf440e1,
         type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 222948392522630424, guid: eb02b3f59b650364381d5813fdf440e1,
         type: 2}
@@ -591,8 +596,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acfc9c28613b3ef4a8828c7e233db2a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wall: {fileID: 0}
-  speed: 1.5
+  speed: 2
+  tryAgain: {fileID: 969475737}
+  isDead: 0
 --- !u!50 &964959174
 Rigidbody2D:
   serializedVersion: 4

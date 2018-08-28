@@ -36,7 +36,6 @@ public class Movement : MonoBehaviour {
 		cd = initCd;
 		tails = new List<GameObject>();
 		tryAgain.SetActive(false);
-		isDead = false;
 		tailCount = 0;
 	}
 
@@ -121,15 +120,15 @@ public class Movement : MonoBehaviour {
 			newVector = new Vector3(1, 0, 0);
 			newDirection = 0;
 		}
-        else if (Input.GetAxis("Horizontal") < 0 && direction.x == 0) {
+    else if (Input.GetAxis("Horizontal") < 0 && direction.x == 0) {
 			newVector = new Vector3(-1, 0, 0);
 			newDirection = 1;
 		}
-        else if (Input.GetAxis("Vertical") > 0 && direction.y == 0) {
+    else if (Input.GetAxis("Vertical") > 0 && direction.y == 0) {
 			newVector = new Vector3(0, 1, 0);
 			newDirection = 2;
 		}
-        else if (Input.GetAxis("Vertical") < 0 && direction.y == 0) {
+    else if (Input.GetAxis("Vertical") < 0 && direction.y == 0) {
 			newVector = new Vector3(0, -1, 0);
 			newDirection = 3;
 		}
@@ -157,8 +156,8 @@ public class Movement : MonoBehaviour {
 			tailCount++;
 			shuffle(walls);
 			foreach(GameObject wall in walls){
-				if(!wall.activeSelf){
-					wall.SetActive(true);
+				if(((SpriteRenderer) wall.GetComponent("SpriteRenderer")).color == Color.clear){
+					((SpriteRenderer) wall.GetComponent("SpriteRenderer")).color = Color.white;
 					break;
 				}
 			}
