@@ -64,11 +64,11 @@ public class ball : MonoBehaviour {
 				else
 					direction = new Vector3(1f, -1f, 0);
 			}
-			if(((SpriteRenderer) other.gameObject.GetComponent("SpriteRenderer")).color == Color.clear){
+			if(((SpriteRenderer) other.gameObject.GetComponent("SpriteRenderer")).color == Color.red){
 				GameObject.Find("Player").GetComponent<Movement>().isDead = true;
 				tryAgain.SetActive(true);
 			}else{
-				((SpriteRenderer) other.gameObject.GetComponent("SpriteRenderer")).color = Color.clear;
+				((SpriteRenderer) other.gameObject.GetComponent("SpriteRenderer")).color = Color.red;
 			}
 		} else {
 			if(direction == new Vector3(1f,1f,0)){

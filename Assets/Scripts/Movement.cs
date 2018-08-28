@@ -158,7 +158,7 @@ public class Movement : MonoBehaviour {
 			tailCount++;
 			shuffle(walls);
 			foreach(GameObject wall in walls){
-				if(((SpriteRenderer) wall.GetComponent("SpriteRenderer")).color == Color.clear){
+				if(((SpriteRenderer) wall.GetComponent("SpriteRenderer")).color == Color.red){
 					((SpriteRenderer) wall.GetComponent("SpriteRenderer")).color = Color.white;
 					break;
 				}
