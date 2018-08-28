@@ -124,7 +124,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 33
+  m_Text: 0
 --- !u!114 &114201481618101560
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -269,7 +269,7 @@ RectTransform:
   m_GameObject: {fileID: 1869090953271332}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.11, z: 1}
+  m_LocalScale: {x: 0.09, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 224413386066627410}
   m_RootOrder: 0
