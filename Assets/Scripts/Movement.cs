@@ -37,7 +37,7 @@ public class Movement : MonoBehaviour {
 		tails = new List<GameObject>();
 		tryAgain.SetActive(false);
 		tailCount = 0;
-		initPos = new Vector3(1/3f, 1/3f, 0f);
+		initPos = new Vector3(1/3f-0.15f, 1/3f-0.15f, 0f);
 	}
 
 	void Restart() {
