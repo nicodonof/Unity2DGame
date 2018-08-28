@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0fe7bd1ab037c0489bcf23e54c74f5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tryAgain: {fileID: 1125655134021532, guid: eb02b3f59b650364381d5813fdf440e1, type: 2}
+  tryAgain: {fileID: 0}
   initCd: 0.1
   grid: 3
   tail: {fileID: 1191304292231034, guid: 5cedafe5420f7044cbfe34af9ee006e0, type: 2}
