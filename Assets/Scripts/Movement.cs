@@ -8,9 +8,9 @@ using UnityEngine.UI;
 public class Movement : MonoBehaviour {
 	Vector3 direction;
 	public GameObject tryAgain;
-    public float initCd = 0.75f;
-    float cd;
-    public float grid = 1.75f;
+	public float initCd = 0.75f;
+	float cd;
+	public float grid = 1.75f;
 	public GameObject tail;
 	public int score;
 	public bool isDead;
@@ -29,13 +29,12 @@ public class Movement : MonoBehaviour {
 	public GameObject[] walls; //top,right,bottom,left
 
 	void Start () {
-        direction = new Vector3(1, 0, 0);
+		direction = new Vector3(1, 0, 0);
 		newVector = direction;
 		score = 0;
 		currDir = 0;
-        cd = initCd;
+		cd = initCd;
 		tails = new List<GameObject>();
-		tryAgain = Instantiate(tryAgain);
 		tryAgain.SetActive(false);
 		isDead = false;
 		tailCount = 0;
@@ -136,18 +135,20 @@ public class Movement : MonoBehaviour {
 		}
 	}
 
-    private void addTail(){
-        GameObject aux = Instantiate(tail);
-        aux.transform.position = transform.position;
-        tails.Add(aux);
-//	    tailCount++;
-    }
+  private void addTail(){
+		GameObject aux = Instantiate(tail);
+		aux.transform.position = transform.position;
+		tails.Add(aux);
+//	tailCount++;
+  }
 
-    void OnCollisionEnter2D(Collision2D collision){
-	    if (collision.gameObject.CompareTag("Player")) {
-		    isDead = true;
-		    tryAgain.SetActive(true);
-	    }
+  void OnCollisionEnter2D(Collision2D collision){
+		if (collision.gameObject.CompareTag("Player")
+				|| collision.gameObject.CompareTag("WallV")
+				|| collision.gameObject.CompareTag("WallH")) {
+			isDead = true;
+			tryAgain.SetActive(true);
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D collider){
