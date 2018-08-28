@@ -111,17 +111,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0fe7bd1ab037c0489bcf23e54c74f5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tryAgain: {fileID: 0}
+  tryAgain: {fileID: 1982350120499058, guid: 9142d31672c5afe4a959886625ac397a, type: 2}
   initCd: 0.1
   grid: 3
   tail: {fileID: 1191304292231034, guid: 5cedafe5420f7044cbfe34af9ee006e0, type: 2}
   score: 0
   isDead: 0
-  scoreDisplay: {fileID: 0}
+  scoreDisplay: {fileID: 1869090953271332, guid: 9142d31672c5afe4a959886625ac397a,
+    type: 2}
   cant: {fileID: 0}
   start: {fileID: 0}
   coin: {fileID: 0}
-  walls: []
+  walls:
+  - {fileID: 1799581582789350, guid: 5527fcaa87e3d3a44a18e3d5b9a27173, type: 2}
+  - {fileID: 1125300615582262, guid: 5527fcaa87e3d3a44a18e3d5b9a27173, type: 2}
+  - {fileID: 1797244001522540, guid: 5527fcaa87e3d3a44a18e3d5b9a27173, type: 2}
+  - {fileID: 1798222552279792, guid: 5527fcaa87e3d3a44a18e3d5b9a27173, type: 2}
 --- !u!212 &212800592856390798
 SpriteRenderer:
   m_ObjectHideFlags: 1

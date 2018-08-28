@@ -1029,16 +1029,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114992158718600492, guid: 3b7ec5a3ab9e77f4d881f8b6ad61177c,
         type: 2}
-      propertyPath: tryAgain
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114992158718600492, guid: 3b7ec5a3ab9e77f4d881f8b6ad61177c,
-        type: 2}
-      propertyPath: scoreDisplay
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114992158718600492, guid: 3b7ec5a3ab9e77f4d881f8b6ad61177c,
-        type: 2}
       propertyPath: cant
       value: 
       objectReference: {fileID: 1683851750}

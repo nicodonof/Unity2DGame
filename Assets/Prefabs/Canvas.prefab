@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114514457972278850}
   - component: {fileID: 114847695343780868}
   m_Layer: 5
-  m_Name: GameCanvas
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4156626488971038
 Transform:
   m_ObjectHideFlags: 1
@@ -124,7 +124,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 31
 --- !u!114 &114201481618101560
 MonoBehaviour:
   m_ObjectHideFlags: 1
