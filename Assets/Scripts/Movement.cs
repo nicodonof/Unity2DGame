@@ -26,6 +26,8 @@ public class Movement : MonoBehaviour {
 
 	private int tailCount;
 
+	public GameObject[] walls; //top,right,bottom,left
+
 	void Start () {
         direction = new Vector3(1, 0, 0);
 		newVector = direction;
@@ -152,6 +154,25 @@ public class Movement : MonoBehaviour {
 		if(collider.gameObject.CompareTag("Fruit") && collider.gameObject.activeSelf){
 			collider.gameObject.SetActive(false);
 			tailCount++;
+			shuffle(walls);
+			foreach(GameObject wall in walls){
+				if(!wall.activeSelf){
+					wall.SetActive(true);
+					break;
+				}
+			}
+    }
+	}
+
+	private void shuffle<GameObject>(IList<GameObject> list) {
+		System.Random rng = new System.Random();
+		int n = list.Count;
+		while (n > 1) {
+				n--;
+				int k = rng.Next(n + 1);
+				GameObject value = list[k];
+				list[k] = list[n];
+				list[n] = value;
 		}
 	}
 }
