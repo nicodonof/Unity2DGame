@@ -23,6 +23,7 @@ public class Movement : MonoBehaviour {
 	public AudioSource cant;
 	public AudioSource start;
 	public AudioSource coin;
+	public GameObject textPool;
 
 	private int tailCount;
 
@@ -161,7 +162,10 @@ public class Movement : MonoBehaviour {
 					break;
 				}
 			}
-    }
+			score += 10;
+			GameObject aux = GameObject.Find("IndicatorPool").GetComponent<PoolManager>().getIndicator();
+			aux.transform.position = transform.position;
+    	}
 	}
 
 	private void shuffle<GameObject>(IList<GameObject> list) {

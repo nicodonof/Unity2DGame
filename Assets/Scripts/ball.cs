@@ -7,6 +7,7 @@ public class ball : MonoBehaviour {
 	Vector3 direction;
 
 	public float speed = 0.5f;
+	// public GameObject wall;
 
 	public GameObject tryAgain;
 
@@ -14,7 +15,7 @@ public class ball : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		direction = new Vector3(1f,1f,0);
+		direction = new Vector3(1f,-1f,0);
 	}
 
 	// Update is called once per frame
