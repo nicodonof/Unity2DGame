@@ -6,13 +6,15 @@ public class ball : MonoBehaviour {
 
 	Vector3 direction;
 
+	public GameObject wall;
+
 	public float speed = 0.75f;
 
 	// Use this for initialization
 	void Start () {
 		direction = new Vector3(1f,1f,0);
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		transform.position += speed * Time.deltaTime * direction;
@@ -56,6 +58,7 @@ public class ball : MonoBehaviour {
 				else
 					direction = new Vector3(1f, -1f, 0);
 			}
+			other.gameObject.SetActive(false);
 		} else {
 			if(direction == new Vector3(1f,1f,0)){
 				if((transform.position.y > otherMinY && transform.position.y < otherMaxY))
@@ -79,7 +82,6 @@ public class ball : MonoBehaviour {
 					direction = new Vector3(1f, -1f, 0);
 			}
 		}
-
 	}
-	
+
 }
