@@ -218,8 +218,8 @@ public class Movement : MonoBehaviour {
 			GameObject aux = GameObject.Find("IndicatorPool").GetComponent<PoolManager>().getIndicator();
 			GameObject cam = GameObject.Find("Main Camera");
             aux.GetComponent<Text>().text = "+10";
-			// cam.GetComponent<Camera>().WorldToScreenPoint(transform.position);
 			aux.transform.position = cam.GetComponent<Camera>().WorldToScreenPoint(transform.position);
+            aux.transform.position += new Vector3(25, 25, 0);
 			scoreDisplay.GetComponent<Text>().text = score.ToString();
 
     	}

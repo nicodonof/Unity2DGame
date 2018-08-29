@@ -89,7 +89,9 @@ public class ball : MonoBehaviour {
 				GameObject aux = GameObject.Find("IndicatorPool").GetComponent<PoolManager>().getIndicator();
 				GameObject cam = GameObject.Find("Main Camera");
 				aux.GetComponent<Text>().text = "+5";
-				((SpriteRenderer) other.gameObject.GetComponent("SpriteRenderer")).color = Color.red;
+                aux.transform.position = cam.GetComponent<Camera>().WorldToScreenPoint(transform.position);
+				aux.transform.position += new Vector3(25, 25, 0);
+                ((SpriteRenderer) other.gameObject.GetComponent("SpriteRenderer")).color = Color.red;
 			}
 		} else {
 			speed *= 1.01f;
@@ -100,6 +102,7 @@ public class ball : MonoBehaviour {
             GameObject cam = GameObject.Find("Main Camera");
 			aux.GetComponent<Text>().text = "+5";
             aux.transform.position = cam.GetComponent<Camera>().WorldToScreenPoint(transform.position);
+            aux.transform.position += new Vector3(25, 25, 0);
             if(direction == new Vector3(1f,1f,0)){
 				if((transform.position.y > otherMinY && transform.position.y < otherMaxY))
 					direction = new Vector3(-1f, 1f, 0);

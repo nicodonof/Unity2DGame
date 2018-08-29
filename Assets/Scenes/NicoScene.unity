@@ -807,7 +807,17 @@ Prefab:
     - target: {fileID: 114003160858550190, guid: 9142d31672c5afe4a959886625ac397a,
         type: 2}
       propertyPath: m_FontData.m_FontSize
-      value: 180
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 224299402764197878, guid: 9142d31672c5afe4a959886625ac397a,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 133.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 224299402764197878, guid: 9142d31672c5afe4a959886625ac397a,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 129.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9142d31672c5afe4a959886625ac397a, type: 2}
