@@ -13,6 +13,10 @@ public class ball : MonoBehaviour {
 
 	public bool isDead;
 
+	// bool freezed = false;
+
+	float freezedCd = 1f;
+
 	// Use this for initialization
 	void Start () {
 		direction = new Vector3(1f,-1f,0);
@@ -21,12 +25,26 @@ public class ball : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         // speed = Mathf.Min(1f, speed - (score / 10000f))
-		if(!GameObject.Find("Player").GetComponent<Movement>().isDead){
-			transform.position += speed * Time.deltaTime * direction;
+		if(!GameObject.Find("Player").GetComponent<Movement>().isDead && freezedCd <= 0){
+			transform.position += speed * Time.deltaTime * direction;       
+		} else {
+			freezedCd -= Time.deltaTime;
 		}
 	}
 
+	private void OnCollisionExit2D(Collision2D other) {
+		// if(other.gameObject.tag == "Player" && freezed){
+		// 	freezed = false;
+		// }
+	}
+
 	private void OnCollisionEnter2D(Collision2D other) {
+		if(other.gameObject.tag == "Player" && freezedCd > 0){
+            freezedCd = 1;
+		}
+		if(other.gameObject.name == "Player"){
+            freezedCd = 1;
+		}
         float ballMaxY = transform.position.y + transform.GetComponent<CircleCollider2D>().radius;
         float ballMaxX = transform.position.x + transform.GetComponent<CircleCollider2D>().radius;
 
