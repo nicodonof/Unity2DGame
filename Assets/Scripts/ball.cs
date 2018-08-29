@@ -56,6 +56,7 @@ public class ball : MonoBehaviour {
 			Movement aux = other.gameObject.GetComponent<Movement>();
 			freezedCd = (aux.tailCount + 1) * 0.2f;
 		}
+        GameObject.Find("bounce").GetComponent<AudioSource>().Play();
         // float ballMaxY = transform.position.y + transform.GetComponent<CircleCollider2D>().radius;
         // float ballMaxX = transform.position.x + transform.GetComponent<CircleCollider2D>().radius;
 

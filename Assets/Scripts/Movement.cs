@@ -202,6 +202,7 @@ public class Movement : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D collider){
+		GameObject.Find("Fruit").GetComponent<AudioSource>().Play();
 		if(collider.gameObject.CompareTag("Fruit") && collider.gameObject.activeSelf){
 			collider.gameObject.SetActive(false);
 			tailCount++;
