@@ -77,6 +77,7 @@ public class Movement : MonoBehaviour {
 		coins.SetActive(false);
 		coinIcon.SetActive(false);
 		scoreDisplay.GetComponent<Text>().text = "0";
+        cdDead = 10;
 		tailCount = 0;
 		GameObject.Find("Background Music").GetComponent<AudioSource>().Play();
 		LocalStorage.coins-=2;
