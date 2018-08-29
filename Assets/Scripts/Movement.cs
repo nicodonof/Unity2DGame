@@ -17,14 +17,14 @@ public class Movement : MonoBehaviour {
 	GameObject scoreDisplay;
 	private Vector3 initPos;
 	private int currDir;
-	List<GameObject> tails;
+	private List<GameObject> tails;
 	private int newDirection; //0 right, 1 left, 2 up, 3 bottom
 	private Vector3 newVector;
 	public AudioSource cant;
 	public AudioSource start;
 	public AudioSource coin;
 
-	private int tailCount;
+	public int tailCount;
 
 	public GameObject[] walls; //top,right,bottom,left
 
@@ -143,7 +143,6 @@ public class Movement : MonoBehaviour {
 		GameObject aux = Instantiate(tail);
 		aux.transform.position = transform.position;
 		tails.Add(aux);
-//	tailCount++;
   }
 
   void OnCollisionEnter2D(Collision2D collision){

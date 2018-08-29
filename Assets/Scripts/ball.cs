@@ -37,21 +37,23 @@ public class ball : MonoBehaviour {
 		// if(other.gameObject.tag == "Player" && freezed){
 		// 	freezed = false;
 		// }
+		// Debug.Log("ME FUI");
 	}
 
 	private void OnCollisionStay2D(Collision2D other) {
-        if (other.gameObject.tag == "Player" && freezedCd > 0){
-			// Debug.Log("STAY" + freezedCd);
-            freezedCd = 1;
-        }
+        // if (other.gameObject.tag == "Player" && freezedCd > 0){
+		// 	// Debug.Log("STAY" + freezedCd);
+        //     freezedCd = 1;
+        // }
 	}
 
 	private void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.tag == "Player" && freezedCd > 0){
-            freezedCd = 1;
-        }	
+        // if (other.gameObject.tag == "Player" && freezedCd > 0){
+        //     freezedCd = 1;
+        // }
 		if(other.gameObject.name == "Player"){
-            freezedCd = 1;
+			Movement aux = other.gameObject.GetComponent<Movement>();
+			freezedCd = (aux.tailCount + 1) * 0.2f;
 		}
         // float ballMaxY = transform.position.y + transform.GetComponent<CircleCollider2D>().radius;
         // float ballMaxX = transform.position.x + transform.GetComponent<CircleCollider2D>().radius;
