@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +15,7 @@ public class ball : MonoBehaviour {
 	public int freezedCd = 0;
 	private GameObject player;
 	private float initSpeed;
+	
 
 	private Vector3 initPos;
 	// Use this for initialization
@@ -32,7 +32,7 @@ public class ball : MonoBehaviour {
         // speed = Mathf.Min(1f, speed - (score / 10000f))
 		if(!player.GetComponent<Movement>().isDead && !frozen){
 			transform.position += speed * Time.deltaTime * direction;
-		}
+ 		}
 
 		if (player.GetComponent<Movement>().isDead) {
 			transform.position = initPos;
@@ -51,12 +51,7 @@ public class ball : MonoBehaviour {
 
 		GameObject.Find("bounce").GetComponent<AudioSource>().Play();
 
-        float otherMaxY = other.transform.position.y + transform.GetComponent<Collider2D>().bounds.size.y / 2;
-        float otherMaxX = other.transform.position.x + transform.GetComponent<Collider2D>().bounds.size.x / 2;
-
-        float otherMinY = other.transform.position.y - transform.GetComponent<Collider2D>().bounds.size.y / 2;
-        float otherMinX = other.transform.position.x - transform.GetComponent<Collider2D>().bounds.size.x / 2;
-
+		
 		bool iswallh = other.gameObject.CompareTag("WallH");
 		bool iswallv = other.gameObject.CompareTag("WallV");
 		if(iswallh || iswallv) {
@@ -110,27 +105,98 @@ public class ball : MonoBehaviour {
 			aux.GetComponent<Text>().text = "+5";
             aux.transform.position = cam.GetComponent<Camera>().WorldToScreenPoint(transform.position);
             aux.transform.position += new Vector3(25, 25, 0);
-            if(direction == new Vector3(1f,1f,0)){
-				if((transform.position.y > otherMinY && transform.position.y < otherMaxY))
+
+			float ballMaxY = transform.position.y + transform.GetComponent<CircleCollider2D>().radius;
+			float ballMaxX = transform.position.x + transform.GetComponent<CircleCollider2D>().radius;
+			float ballMinY = transform.position.y - transform.GetComponent<CircleCollider2D>().radius;
+			float ballMinX = transform.position.x - transform.GetComponent<CircleCollider2D>().radius;
+		
+			float otherMaxY = other.transform.position.y + transform.GetComponent<Collider2D>().bounds.size.y / 2;
+			float otherMaxX = other.transform.position.x + transform.GetComponent<Collider2D>().bounds.size.x / 2;
+
+			float otherMinY = other.transform.position.y - transform.GetComponent<Collider2D>().bounds.size.y / 2;
+			float otherMinX = other.transform.position.x - transform.GetComponent<Collider2D>().bounds.size.x / 2;
+			float diff = 0;
+			float diff2 = 0;
+			if(direction == new Vector3(1f,1f,0)){ //dir right-up
+				if (ballMaxX > otherMinX && ballMinX <= otherMinX && transform.position.x < otherMinX) {
+					//hit on the left
 					direction = new Vector3(-1f, 1f, 0);
-				else
-					direction = new Vector3(1f, -1f, 0);
-			} else if((direction == new Vector3(-1f, 1f, 0))) {
-				if(transform.position.y > otherMinY && transform.position.y < otherMaxY)
-					direction = new Vector3(1f, 1f, 0);
-				else
-					direction = new Vector3(-1f, -1f, 0);
-			}else if((direction == new Vector3(1f, -1f, 0))) {
-				if(transform.position.x > otherMinX && transform.position.x < otherMaxX)
-					direction = new Vector3(1f, 1f, 0);
-				else
-					direction = new Vector3(-1f, -1f, 0);
-			} else {
-				if ((transform.position.x > otherMinX && transform.position.x < otherMaxX))
-					direction = new Vector3(-1f, 1f, 0);
-				else
-					direction = new Vector3(1f, -1f, 0);
+					diff = Math.Min(Math.Abs(transform.position.x - otherMinX), Math.Abs(transform.position.x - otherMaxX));
+				}
+
+				if (ballMaxY >= otherMinY && ballMinY < otherMinY && transform.position.y < otherMinY) {
+					//hit on the bottom
+					diff2 = Math.Min(Math.Abs(transform.position.y - otherMinY), Math.Abs(transform.position.y - otherMaxY));
+					if(diff2 > diff)
+						direction = new Vector3(1f, -1f, 0);
+				}
 			}
+			if(direction == new Vector3(-1f, 1f, 0)) { //dir left-up
+				if (ballMinX <= otherMaxX && ballMaxX > otherMaxX && transform.position.x > otherMaxX) {
+					//hit on the right
+					diff = Math.Min(Math.Abs(transform.position.x - otherMaxX), Math.Abs(transform.position.x - otherMinX));
+					direction = new Vector3(1f, 1f, 0);
+				}
+
+				if (ballMaxY >= otherMinY && ballMinY < otherMinY && transform.position.y < otherMinY) {
+					//hit on the bottom
+					diff2 = Math.Min(Math.Abs(transform.position.y - otherMinY), Math.Abs(transform.position.y - otherMaxY));
+					if(diff2 > diff)
+						direction = new Vector3(-1f, -1f, 0);
+				}
+			}
+			if(direction == new Vector3(1f, -1f, 0)) { //dir down-right
+				if (ballMinY <= otherMaxY && ballMaxY > otherMaxY && transform.position.y > otherMaxY) {
+					//hit on the top
+					diff = Math.Min(Math.Abs(transform.position.y - otherMaxY), Math.Abs(transform.position.y - otherMinY));
+					direction = new Vector3(1f, 1f, 0);
+				}
+
+				if (ballMaxX > otherMinX && ballMinX <= otherMinX && transform.position.x < otherMinX) {
+					//hit on the left
+					diff2 = Math.Min(Math.Abs(transform.position.x - otherMinX), Math.Abs(transform.position.x - otherMaxX));
+					if(diff2 > diff) 
+						direction = new Vector3(-1f, -1f, 0);
+				}
+			} 
+			if(direction == new Vector3(-1f, -1f, 0)) { //dir down-left
+				if (ballMinY <= otherMaxY && ballMaxY > otherMaxY && transform.position.y > otherMaxY) {
+					//hit on the top
+					diff = Math.Min(Math.Abs(transform.position.y - otherMaxY), Math.Abs(transform.position.y - otherMinY));
+					direction = new Vector3(-1f, 1f, 0);
+				}
+				if (ballMinX <= otherMaxX && ballMaxX > otherMaxX && transform.position.x > otherMaxX) {
+					//hit on the right
+					diff2 = Math.Min(Math.Abs(transform.position.x - otherMaxX), Math.Abs(transform.position.x - otherMinX));
+					if(diff2 > diff)
+						direction = new Vector3(1f, -1f, 0);
+				}
+			}
+
+
+
+//            if(direction == new Vector3(1f,1f,0)){ //right-up
+//				if(transform.position.y > otherMinY && transform.position.y < otherMaxY) //right
+//					direction = new Vector3(-1f, 1f, 0);
+//				else //up
+//					direction = new Vector3(1f, -1f, 0);
+//			} else if(direction == new Vector3(-1f, 1f, 0)) { //left-up
+//				if(transform.position.y > otherMinY && transform.position.y < otherMaxY) //left
+//					direction = new Vector3(1f, 1f, 0);
+//				else //up
+//					direction = new Vector3(-1f, -1f, 0);
+//			}else if(direction == new Vector3(1f, -1f, 0)) { //down-right
+//				if(transform.position.x > otherMinX && transform.position.x < otherMaxX) //down
+//					direction = new Vector3(1f, 1f, 0); 
+//				else //right
+//					direction = new Vector3(-1f, -1f, 0);
+//			} else { //down-left
+//				if ((transform.position.x > otherMinX && transform.position.x < otherMaxX)) //down
+//					direction = new Vector3(-1f, 1f, 0);
+//				else //left
+//					direction = new Vector3(1f, -1f, 0);
+//			}
 		}
 	}
 
