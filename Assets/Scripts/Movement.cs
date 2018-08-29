@@ -207,7 +207,9 @@ public class Movement : MonoBehaviour {
 			score += 10;
 			// Debug.Log(GameObject.Find("IndicatorPool").ToString());
 			GameObject aux = GameObject.Find("IndicatorPool").GetComponent<PoolManager>().getIndicator();
-			aux.transform.position = transform.position;
+			GameObject cam = GameObject.Find("Main Camera");
+			// cam.GetComponent<Camera>().WorldToScreenPoint(transform.position);
+			aux.transform.position = cam.GetComponent<Camera>().WorldToScreenPoint(transform.position);
     	}
 	}
 

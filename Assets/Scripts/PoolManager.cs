@@ -8,13 +8,14 @@ public class PoolManager : MonoBehaviour {
 	
 	public GameObject indicator;
 
-	public int size = 3;
+	public int size = 5;
 	// Use this for initialization
 	void Start () {
 		indicators = new List<GameObject>();
 		for (int i = 0; i < size; i++){
             GameObject aux = Instantiate(indicator);
             aux.transform.SetParent(FindObjectOfType<Canvas>().transform);
+			aux.SetActive(false);
 			indicators.Add(aux);
 		}
 	}
@@ -25,8 +26,13 @@ public class PoolManager : MonoBehaviour {
 	}
 
 	public GameObject getIndicator(){
-		GameObject aux = indicators[0];
-        indicators.RemoveAt(0);
+		//Lo cambia de lugar para darle tiempo a mostrarse
+		GameObject aux;
+		aux = indicators[0];
+		indicators.RemoveAt(0);
+		aux.SetActive(false); // Reseteara la animation?
+		aux.SetActive(true);
+		indicators.Add(aux);
 		return aux;
 	}
 
