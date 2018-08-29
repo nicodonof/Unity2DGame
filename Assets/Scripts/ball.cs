@@ -88,13 +88,17 @@ public class ball : MonoBehaviour {
                 GameObject.Find("Die").GetComponent<AudioSource>().Play();
 			}else{
 				Movement mvtScr = GameObject.Find("Player").GetComponent<Movement>();
-				mvtScr.score += 10;
-				GameObject.Find("Score").GetComponent<Text>().text = mvtScr.score.ToString();
 				GameObject aux = GameObject.Find("IndicatorPool").GetComponent<PoolManager>().getIndicator();
 				GameObject cam = GameObject.Find("Main Camera");
-				aux.GetComponent<Text>().text = "+5";
+
+                int scoreToAdd = (other.gameObject.GetComponent<Wallprops>().getWeight() + 1) * 10;
+				mvtScr.score += scoreToAdd;
+				GameObject.Find("Score").GetComponent<Text>().text = mvtScr.score.ToString();
+				aux.GetComponent<Text>().text = "+" + scoreToAdd.ToString();
                 aux.transform.position = cam.GetComponent<Camera>().WorldToScreenPoint(transform.position);
 				aux.transform.position += new Vector3(25, 25, 0);
+                aux.transform.position = new Vector3(Mathf.Clamp(aux.transform.position.x, 100, 700), Mathf.Clamp(aux.transform.position.y, 100, 500), 0);
+
                 ((SpriteRenderer) other.gameObject.GetComponent("SpriteRenderer")).color = new Color(0.674f,0.196f,0.196f,1f); //172 50 50 255
 			}
 		} else if(collide){
@@ -104,9 +108,11 @@ public class ball : MonoBehaviour {
             GameObject.Find("Score").GetComponent<Text>().text = mvtScr.score.ToString();
             GameObject aux = GameObject.Find("IndicatorPool").GetComponent<PoolManager>().getIndicator();
             GameObject cam = GameObject.Find("Main Camera");
+			
 			aux.GetComponent<Text>().text = "+5";
             aux.transform.position = cam.GetComponent<Camera>().WorldToScreenPoint(transform.position);
             aux.transform.position += new Vector3(25, 25, 0);
+            aux.transform.position = new Vector3(Mathf.Clamp(aux.transform.position.x, 100, 700), Mathf.Clamp(aux.transform.position.y, 100, 500), 0);
 
 			float ballMaxY = transform.position.y + transform.GetComponent<CircleCollider2D>().radius;
 			float ballMaxX = transform.position.x + transform.GetComponent<CircleCollider2D>().radius;

@@ -400,6 +400,66 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 212407669419195814, guid: 5527fcaa87e3d3a44a18e3d5b9a27173,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0.41568628
+      objectReference: {fileID: 0}
+    - target: {fileID: 212407669419195814, guid: 5527fcaa87e3d3a44a18e3d5b9a27173,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 0.74509805
+      objectReference: {fileID: 0}
+    - target: {fileID: 212407669419195814, guid: 5527fcaa87e3d3a44a18e3d5b9a27173,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 0.1882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 212559111619096324, guid: 5527fcaa87e3d3a44a18e3d5b9a27173,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0.41568628
+      objectReference: {fileID: 0}
+    - target: {fileID: 212559111619096324, guid: 5527fcaa87e3d3a44a18e3d5b9a27173,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 0.74509805
+      objectReference: {fileID: 0}
+    - target: {fileID: 212559111619096324, guid: 5527fcaa87e3d3a44a18e3d5b9a27173,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 0.1882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 212888904032651508, guid: 5527fcaa87e3d3a44a18e3d5b9a27173,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0.41568628
+      objectReference: {fileID: 0}
+    - target: {fileID: 212888904032651508, guid: 5527fcaa87e3d3a44a18e3d5b9a27173,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 0.74509805
+      objectReference: {fileID: 0}
+    - target: {fileID: 212888904032651508, guid: 5527fcaa87e3d3a44a18e3d5b9a27173,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 0.1882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 212864834422117202, guid: 5527fcaa87e3d3a44a18e3d5b9a27173,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0.41568628
+      objectReference: {fileID: 0}
+    - target: {fileID: 212864834422117202, guid: 5527fcaa87e3d3a44a18e3d5b9a27173,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 0.74509805
+      objectReference: {fileID: 0}
+    - target: {fileID: 212864834422117202, guid: 5527fcaa87e3d3a44a18e3d5b9a27173,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 0.1882353
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5527fcaa87e3d3a44a18e3d5b9a27173, type: 2}
   m_IsPrefabAsset: 0
@@ -423,6 +483,50 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1799581582789350, guid: 5527fcaa87e3d3a44a18e3d5b9a27173,
     type: 2}
   m_PrefabInternal: {fileID: 241270359}
+--- !u!114 &241270364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 241270360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd350482c40dedb4da5646f1b332e4a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &241270365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 241270361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd350482c40dedb4da5646f1b332e4a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &241270366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 241270362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd350482c40dedb4da5646f1b332e4a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &241270367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 241270363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd350482c40dedb4da5646f1b332e4a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &417030179
 Prefab:
   m_ObjectHideFlags: 0

@@ -69,7 +69,7 @@ public class Movement : MonoBehaviour {
 			DestroyImmediate(t);
 		}
 		foreach(GameObject wall in walls){
-			((SpriteRenderer) wall.GetComponent("SpriteRenderer")).color = Color.white;
+			((SpriteRenderer) wall.GetComponent("SpriteRenderer")).color = wall.GetComponent<Wallprops>().restart();// 118 66 138
 		}
 		tails.Clear();
 		transform.position = initPos;
@@ -232,18 +232,21 @@ public class Movement : MonoBehaviour {
 			shuffle(walls);
 			foreach(GameObject wall in walls){
 				if(((SpriteRenderer) wall.GetComponent("SpriteRenderer")).color == new Color(0.674f, 0.196f, 0.196f, 1f)){
-					((SpriteRenderer) wall.GetComponent("SpriteRenderer")).color = Color.white;
+					((SpriteRenderer) wall.GetComponent("SpriteRenderer")).color = wall.GetComponent<Wallprops>().addWeight();
 					break;
 				}
 			}
-			score += 10;
+            score += 10;
+           
 			// Debug.Log(GameObject.Find("IndicatorPool").ToString());
 			GameObject aux = GameObject.Find("IndicatorPool").GetComponent<PoolManager>().getIndicator();
 			GameObject cam = GameObject.Find("Main Camera");
-            aux.GetComponent<Text>().text = "+10";
+            aux.GetComponent<Text>().text = "+" + 10;
 			aux.transform.position = cam.GetComponent<Camera>().WorldToScreenPoint(transform.position);
             aux.transform.position += new Vector3(25, 25, 0);
-			scoreDisplay.GetComponent<Text>().text = score.ToString();
+            aux.transform.position = new Vector3(Mathf.Clamp(aux.transform.position.x, 100, 700), Mathf.Clamp(aux.transform.position.y, 100, 500), 0);
+
+            scoreDisplay.GetComponent<Text>().text = score.ToString();
 
     	}
 	}
