@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4560421135070968}
   - component: {fileID: 212800592856390798}
-  - component: {fileID: 114457279372987434}
   - component: {fileID: 114992158718600492}
   - component: {fileID: 50330930672407008}
   - component: {fileID: 61015724644545944}
@@ -89,17 +88,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114457279372987434
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1757617113530394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03d6a56d2dc5aa346aaec156cde0afdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114992158718600492
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -111,7 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0fe7bd1ab037c0489bcf23e54c74f5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tryAgain: {fileID: 0}
+  tryAgain: {fileID: 1982350120499058, guid: 9142d31672c5afe4a959886625ac397a, type: 2}
+  coins: {fileID: 1678762805047252, guid: 9142d31672c5afe4a959886625ac397a, type: 2}
+  coinIcon: {fileID: 1541015825153102, guid: b19e173bb85ac264384dc8a3933b2628, type: 2}
   initCd: 0.2
   cd: 0
   grid: 3

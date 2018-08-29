@@ -9,6 +9,8 @@ public class ball : MonoBehaviour {
 
 	public float speed = 0.5f;
 	public GameObject tryAgain;
+	public GameObject coins;
+	public GameObject coinIcon;
 	public bool isDead;
 	public bool frozen;
 	public int freezedCd = 0;
@@ -80,9 +82,11 @@ public class ball : MonoBehaviour {
 				else
 					direction = new Vector3(1f, -1f, 0);
 			}
-			if(((SpriteRenderer) other.gameObject.GetComponent("SpriteRenderer")).color == Color.red){
+			if(((SpriteRenderer) other.gameObject.GetComponent("SpriteRenderer")).color == new Color(0.674f, 0.196f, 0.196f, 1f)){
 				GameObject.Find("Player").GetComponent<Movement>().isDead = true;
-				tryAgain.SetActive(true);
+                tryAgain.SetActive(true);
+                coins.SetActive(true);
+                coinIcon.SetActive(true);
 			}else{
 				Movement mvtScr = GameObject.Find("Player").GetComponent<Movement>();
 				mvtScr.score += 10;

@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class Movement : MonoBehaviour {
 	public GameObject tryAgain;
+	public GameObject coins;
+	public GameObject coinIcon;
 	public float initCd = 0.75f;
 	public float cd;
 	public float grid = 1.75f;
@@ -33,6 +35,8 @@ public class Movement : MonoBehaviour {
 	private GameObject ball;
 	private ball ballScript;
 
+    private float cdDead = 10;
+
     void Start () {
 	    ball = GameObject.Find("Ball");
 	    ballColl = ball.GetComponent<Collider2D>();
@@ -49,7 +53,8 @@ public class Movement : MonoBehaviour {
 		scoreDisplay = GameObject.Find("Score");
 		encoDir = -1;
 		scoreCd = 0;
-	}
+        coins.GetComponent<Text>().text = LocalStorage.coins.ToString();
+    }
 
 	void Restart() {
 		direction = new Vector3(1,0,0);
@@ -69,8 +74,11 @@ public class Movement : MonoBehaviour {
 		tails.Clear();
 		transform.position = initPos;
 		tryAgain.SetActive(false);
+		coins.SetActive(false);
+		coinIcon.SetActive(false);
 		scoreDisplay.GetComponent<Text>().text = "0";
 		tailCount = 0;
+		GameObject.Find("Background Music").GetComponent<AudioSource>().Play();
 	}
 
 	// Update is called once per frame
@@ -184,8 +192,14 @@ public class Movement : MonoBehaviour {
 				return;
 			}
 			if (Input.GetKeyDown(KeyCode.C)) {
-				LocalStorage.coins++;
+                LocalStorage.coins++;
+				coins.GetComponent<Text>().text = LocalStorage.coins.ToString(); 
 				coin.Play();
+			}
+			if(cdDead < 0){
+				SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+			} else {
+				cdDead -= Time.deltaTime;
 			}
 		}
 		
@@ -202,7 +216,11 @@ public class Movement : MonoBehaviour {
 				|| collision.gameObject.CompareTag("WallV")
 				|| collision.gameObject.CompareTag("WallH")) {
 			isDead = true;
-			tryAgain.SetActive(true);
+            tryAgain.SetActive(true);
+			coins.SetActive(true);
+			coinIcon.SetActive(true);
+            GameObject.Find("Background Music").GetComponent<AudioSource>().Stop();
+            GameObject.Find("Die").GetComponent<AudioSource>().Play();
 		}
 	}
 
@@ -213,7 +231,7 @@ public class Movement : MonoBehaviour {
 			tailCount++;
 			shuffle(walls);
 			foreach(GameObject wall in walls){
-				if(((SpriteRenderer) wall.GetComponent("SpriteRenderer")).color == Color.red){
+				if(((SpriteRenderer) wall.GetComponent("SpriteRenderer")).color == new Color(0.674f, 0.196f, 0.196f, 1f)){
 					((SpriteRenderer) wall.GetComponent("SpriteRenderer")).color = Color.white;
 					break;
 				}
