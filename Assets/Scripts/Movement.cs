@@ -29,8 +29,14 @@ public class Movement : MonoBehaviour {
 	private int encoDir;
 	private Vector3 encoVector;
     private int scoreCd;
+	private Collider2D ballColl;
+	private GameObject ball;
+	private ball ballScript;
 
     void Start () {
+	    ball = GameObject.Find("Ball");
+	    ballColl = ball.GetComponent<Collider2D>();
+	    ballScript = ball.GetComponent<ball>();
 		direction = new Vector3(1, 0, 0);
 		newVector = direction;
 		score = 0;
@@ -78,8 +84,7 @@ public class Movement : MonoBehaviour {
 		} else {
 			encolate = false;
 		}
-		
-		
+
 		if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && (direction.x >= 0 || encolate)) {
 			if (newDirection != 0 && encolate) {
 				encoVector = new Vector3(1,0,0);
@@ -187,9 +192,9 @@ public class Movement : MonoBehaviour {
 	}
 
   private void addTail(){
-		GameObject aux = Instantiate(tail);
-		aux.transform.position = transform.position;
-		tails.Add(aux);
+	GameObject aux = Instantiate(tail);
+	aux.transform.position = transform.position;
+	tails.Add(aux);
   }
 
   void OnCollisionEnter2D(Collision2D collision){
@@ -201,7 +206,7 @@ public class Movement : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter2D(Collider2D collider){
+  void OnTriggerEnter2D(Collider2D collider){
 		GameObject.Find("Fruit").GetComponent<AudioSource>().Play();
 		if(collider.gameObject.CompareTag("Fruit") && collider.gameObject.activeSelf){
 			collider.gameObject.SetActive(false);

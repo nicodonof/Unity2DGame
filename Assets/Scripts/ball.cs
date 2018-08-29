@@ -10,7 +10,8 @@ public class ball : MonoBehaviour {
 	public float speed = 0.5f;
 	public GameObject tryAgain;
 	public bool isDead;
-	private float freezedCd = 1f;
+	public bool frozen;
+	public int freezedCd = 0;
 	private GameObject player;
 	private float initSpeed;
 
@@ -21,15 +22,14 @@ public class ball : MonoBehaviour {
 		direction = new Vector3(1f,-1f,0);
 		initPos = transform.position;
 		initSpeed = speed;
+		frozen = false;
 	}
 
 	// Update is called once per frame
 	void Update () {
         // speed = Mathf.Min(1f, speed - (score / 10000f))
-		if(!player.GetComponent<Movement>().isDead && freezedCd <= 0){
+		if(!player.GetComponent<Movement>().isDead && !frozen){
 			transform.position += speed * Time.deltaTime * direction;
-		} else {
-			freezedCd -= Time.deltaTime;
 		}
 
 		if (player.GetComponent<Movement>().isDead) {
@@ -40,9 +40,10 @@ public class ball : MonoBehaviour {
 	}
 
 	private void OnCollisionEnter2D(Collision2D other) {
-		if(other.gameObject.name == "Player"){
-			Movement aux = other.gameObject.GetComponent<Movement>();
-			freezedCd = (aux.tailCount + 1) * 0.2f;
+		if(other.gameObject.name == "Player") {
+			transform.position = other.transform.position;
+			freezedCd = 1;
+			frozen = true;
 			speed *= 1.02f;
 		}
 
