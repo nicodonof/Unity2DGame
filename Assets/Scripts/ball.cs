@@ -8,60 +8,45 @@ public class ball : MonoBehaviour {
 	Vector3 direction;
 
 	public float speed = 0.5f;
-	// public GameObject wall;
-
 	public GameObject tryAgain;
-
 	public bool isDead;
+	private float freezedCd = 1f;
+	private GameObject player;
+	private float initSpeed;
 
-	// bool freezed = false;
-
-	float freezedCd = 1f;
-
+	private Vector3 initPos;
 	// Use this for initialization
 	void Start () {
+		player = GameObject.Find("Player");
 		direction = new Vector3(1f,-1f,0);
+		initPos = transform.position;
+		initSpeed = speed;
 	}
 
 	// Update is called once per frame
 	void Update () {
         // speed = Mathf.Min(1f, speed - (score / 10000f))
-		if(!GameObject.Find("Player").GetComponent<Movement>().isDead && freezedCd <= 0){
+		if(!player.GetComponent<Movement>().isDead && freezedCd <= 0){
 			transform.position += speed * Time.deltaTime * direction;
 		} else {
 			freezedCd -= Time.deltaTime;
 		}
+
+		if (player.GetComponent<Movement>().isDead) {
+			transform.position = initPos;
+			speed = initSpeed;
+		}
 		// Debug.Log(freezedCd);
 	}
 
-	private void OnCollisionExit2D(Collision2D other) {
-		// if(other.gameObject.tag == "Player" && freezed){
-		// 	freezed = false;
-		// }
-		// Debug.Log("ME FUI");
-	}
-
-	private void OnCollisionStay2D(Collision2D other) {
-        // if (other.gameObject.tag == "Player" && freezedCd > 0){
-		// 	// Debug.Log("STAY" + freezedCd);
-        //     freezedCd = 1;
-        // }
-	}
-
 	private void OnCollisionEnter2D(Collision2D other) {
-        // if (other.gameObject.tag == "Player" && freezedCd > 0){
-        //     freezedCd = 1;
-        // }
 		if(other.gameObject.name == "Player"){
 			Movement aux = other.gameObject.GetComponent<Movement>();
 			freezedCd = (aux.tailCount + 1) * 0.2f;
+			speed *= 1.02f;
 		}
-        GameObject.Find("bounce").GetComponent<AudioSource>().Play();
-        // float ballMaxY = transform.position.y + transform.GetComponent<CircleCollider2D>().radius;
-        // float ballMaxX = transform.position.x + transform.GetComponent<CircleCollider2D>().radius;
 
-        // float ballMinY = transform.position.y - transform.GetComponent<CircleCollider2D>().radius;
-        // float ballMinX = transform.position.x - transform.GetComponent<CircleCollider2D>().radius;
+		GameObject.Find("bounce").GetComponent<AudioSource>().Play();
 
         float otherMaxY = other.transform.position.y + transform.GetComponent<Collider2D>().bounds.size.y / 2;
         float otherMaxX = other.transform.position.x + transform.GetComponent<Collider2D>().bounds.size.x / 2;
@@ -69,10 +54,10 @@ public class ball : MonoBehaviour {
         float otherMinY = other.transform.position.y - transform.GetComponent<Collider2D>().bounds.size.y / 2;
         float otherMinX = other.transform.position.x - transform.GetComponent<Collider2D>().bounds.size.x / 2;
 
-		Transform othTr = other.transform;
-		bool iswallh = other.gameObject.tag == "WallH";
-		bool iswallv = other.gameObject.tag == "WallV";
-		if(iswallh || iswallv){
+		bool iswallh = other.gameObject.CompareTag("WallH");
+		bool iswallv = other.gameObject.CompareTag("WallV");
+		if(iswallh || iswallv) {
+			speed *= 1.01f;
 			if(direction == new Vector3(1f,1f,0)){
 				if(iswallh)
 					direction = new Vector3(1f, -1f, 0);
@@ -107,6 +92,7 @@ public class ball : MonoBehaviour {
 				((SpriteRenderer) other.gameObject.GetComponent("SpriteRenderer")).color = Color.red;
 			}
 		} else {
+			speed *= 1.01f;
             Movement mvtScr = GameObject.Find("Player").GetComponent<Movement>();
 			mvtScr.score += 5;
             GameObject.Find("Score").GetComponent<Text>().text = mvtScr.score.ToString();

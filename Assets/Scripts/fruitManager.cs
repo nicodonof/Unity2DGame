@@ -7,7 +7,7 @@ public class fruitManager : MonoBehaviour {
 
 	void Start () {
 		fruit = Instantiate(fruit);
-		fruit.transform.position = new Vector3(Random.Range(-18, 19)/3f-0.15f, Random.Range(-13, 14)/3f-0.15f, 0);
+		fruit.transform.position = new Vector3(Random.Range(-18, 20)/3f-0.15f, Random.Range(-13, 15)/3f-0.15f, 0);
 
 	}
 	// Use this for initialization
@@ -19,7 +19,7 @@ public class fruitManager : MonoBehaviour {
 
  	void newFruitIfNeeded() {
 		if(!fruit.activeSelf){
-			fruit.transform.position = new Vector3(Random.Range(-18, 19)/3f-0.15f, Random.Range(-13, 14)/3f-0.15f, 0);
+			fruit.transform.position = new Vector3(Random.Range(-18, 20)/3f-0.15f, Random.Range(-13, 15)/3f-0.15f, 0);
 			fruit.SetActive(true);
 		}
  }
