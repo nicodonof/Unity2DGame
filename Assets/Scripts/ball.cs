@@ -87,6 +87,8 @@ public class ball : MonoBehaviour {
                 tryAgain.SetActive(true);
                 coins.SetActive(true);
                 coinIcon.SetActive(true);
+                GameObject.Find("Background Music").GetComponent<AudioSource>().Stop();
+                GameObject.Find("Die").GetComponent<AudioSource>().Play();
 			}else{
 				Movement mvtScr = GameObject.Find("Player").GetComponent<Movement>();
 				mvtScr.score += 10;
