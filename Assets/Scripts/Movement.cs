@@ -6,27 +6,28 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Movement : MonoBehaviour {
-	Vector3 direction;
 	public GameObject tryAgain;
 	public float initCd = 0.75f;
-	float cd;
+	public float cd;
 	public float grid = 1.75f;
 	public GameObject tail;
 	public int score;
 	public bool isDead;
-	GameObject scoreDisplay;
-	private Vector3 initPos;
-	private int currDir;
-	private List<GameObject> tails;
-	private int newDirection; //0 right, 1 left, 2 up, 3 bottom
-	private Vector3 newVector;
 	public AudioSource cant;
 	public AudioSource start;
 	public AudioSource coin;
-
-	public int tailCount;
-
 	public GameObject[] walls; //top,right,bottom,left
+	public int tailCount;
+	private Vector3 direction;
+	private GameObject scoreDisplay;
+	private Vector3 initPos;
+	private int currDir;
+	private int newDirection; //0 right, 1 left, 2 up, 3 bottom
+	private Vector3 newVector;
+	private List<GameObject> tails;
+	private bool encolate;
+	private int encoDir;
+	private Vector3 encoVector;
 
 	void Start () {
 		direction = new Vector3(1, 0, 0);
@@ -39,12 +40,14 @@ public class Movement : MonoBehaviour {
 		tailCount = 0;
 		initPos = new Vector3(1/3f-0.15f, 1/3f-0.15f, 0f);
 		scoreDisplay = GameObject.Find("Score");
+		encoDir = -1;
 	}
 
 	void Restart() {
 		direction = new Vector3(1,0,0);
 		newVector = direction;
 		newDirection = 0;
+		encoDir = -1;
 		currDir = 0;
 		score = 0;
 		cd = initCd;
@@ -63,6 +66,53 @@ public class Movement : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if (newDirection >= 0) {
+			encolate = true;
+		} else if (encoDir >= 0) {
+			newVector = encoVector;
+			newDirection = encoDir;
+			encoDir = -1;
+		} else {
+			encolate = false;
+		}
+		
+		
+		if (Input.GetKeyDown(KeyCode.D) && (direction.x >= 0 || encolate)) {
+			if (newDirection != 0 && encolate) {
+				encoVector = new Vector3(1,0,0);
+				encoDir = 0;
+			} else {
+				newVector = new Vector3(1, 0, 0);
+				newDirection = 0;
+			}
+		}
+		if (Input.GetKeyDown(KeyCode.A) && (direction.x <= 0 || encolate)) {
+			if (newDirection != 1 && encolate) {
+				encoVector = new Vector3(-1, 0, 0);
+				encoDir= 1;
+			} else {
+				newVector = new Vector3(-1, 0, 0);
+				newDirection = 1;	
+			}
+		}
+		if (Input.GetKeyDown(KeyCode.W) && (direction.y >= 0 || encolate)) {
+			if (newDirection != 2 && encolate) {
+				encoVector = new Vector3(0,1,0);
+				encoDir = 2;
+			} else {
+				newVector = new Vector3(0, 1, 0);
+				newDirection = 2;
+			}
+		}
+		if (Input.GetKeyDown(KeyCode.S) && (direction.y <= 0 || encolate)) {
+			if (newDirection != 3 && encolate) {
+				encoVector = new Vector3(0,-1,0);
+				encoDir = 3;
+			} else {
+				newVector = new Vector3(0, -1, 0);
+				newDirection = 3;
+			}
+		}
 		if(cd <= 0 && !isDead) {
 			switch (newDirection) {
 				case 0:
@@ -98,9 +148,11 @@ public class Movement : MonoBehaviour {
 			} else {
 				addTail();
 			}
+			newDirection = -1;
+			addTail();
 			transform.position += direction / grid;
 			score++;
-			cd = Math.Max(0.2f ,initCd - ( score / 10000f ));
+			cd = Math.Max(0.000001f ,initCd - (float) Math.Log10(score) * 0.05f);
 			scoreDisplay.GetComponent<Text>().text = score.ToString();
 
 			
@@ -124,22 +176,7 @@ public class Movement : MonoBehaviour {
 				coin.Play();
 			}
 		}
-		if (Input.GetAxis("Horizontal") > 0 && direction.x == 0) {
-			newVector = new Vector3(1, 0, 0);
-			newDirection = 0;
-		}
-    else if (Input.GetAxis("Horizontal") < 0 && direction.x == 0) {
-			newVector = new Vector3(-1, 0, 0);
-			newDirection = 1;
-		}
-    else if (Input.GetAxis("Vertical") > 0 && direction.y == 0) {
-			newVector = new Vector3(0, 1, 0);
-			newDirection = 2;
-		}
-    else if (Input.GetAxis("Vertical") < 0 && direction.y == 0) {
-			newVector = new Vector3(0, -1, 0);
-			newDirection = 3;
-		}
+		
 	}
 
   private void addTail(){
