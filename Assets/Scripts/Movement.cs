@@ -149,7 +149,6 @@ public class Movement : MonoBehaviour {
 				addTail();
 			}
 			newDirection = -1;
-			addTail();
 			transform.position += direction / grid;
 			score++;
 			cd = Math.Max(0.000001f ,initCd - (float) Math.Log10(score) * 0.05f);
