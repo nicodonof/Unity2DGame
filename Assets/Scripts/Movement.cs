@@ -90,17 +90,20 @@ public class Movement : MonoBehaviour {
 					}
 					break;
 			}
-			addTail();
+			if(tails.Count > tailCount){
+				GameObject move = tails[0];
+				tails.RemoveAt(0);
+                move.transform.position = transform.position;
+				tails.Add(move);
+			} else {
+				addTail();
+			}
 			transform.position += direction / grid;
 			score++;
 			cd = Math.Max(0.2f ,initCd - ( score / 10000f ));
 			scoreDisplay.GetComponent<Text>().text = score.ToString();
 
-			if(tails.Count > tailCount){
-				GameObject toDel = tails[0];
-				tails.RemoveAt(0);
-				DestroyImmediate(toDel);
-			}
+			
 		}
 		else{
 			cd -= Time.deltaTime;
@@ -167,8 +170,8 @@ public class Movement : MonoBehaviour {
 			}
 			score += 10;
 			// Debug.Log(GameObject.Find("IndicatorPool").ToString());
-			// GameObject aux = GameObject.Find("IndicatorPool").GetComponent<PoolManager>().getIndicator();
-			// aux.transform.position = transform.position;
+			GameObject aux = GameObject.Find("IndicatorPool").GetComponent<PoolManager>().getIndicator();
+			aux.transform.position = transform.position;
     	}
 	}
 
