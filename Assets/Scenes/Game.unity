@@ -1691,6 +1691,10 @@ Prefab:
       propertyPath: coinIcon
       value: 
       objectReference: {fileID: 927148236}
+    - target: {fileID: 4560421135070968, guid: 3b7ec5a3ab9e77f4d881f8b6ad61177c, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b7ec5a3ab9e77f4d881f8b6ad61177c, type: 2}
   m_IsPrefabAsset: 0

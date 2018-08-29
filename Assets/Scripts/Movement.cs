@@ -80,7 +80,8 @@ public class Movement : MonoBehaviour {
 		tailCount = 0;
 		GameObject.Find("Background Music").GetComponent<AudioSource>().Play();
 		LocalStorage.coins-=2;
-	}
+        coins.GetComponent<Text>().text = LocalStorage.coins.ToString();
+    }
 
 	// Update is called once per frame
 	void Update () {
