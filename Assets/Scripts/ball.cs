@@ -15,6 +15,7 @@ public class ball : MonoBehaviour {
 	public int freezedCd = 0;
 	private GameObject player;
 	private float initSpeed;
+	private bool collide;
 	
 
 	private Vector3 initPos;
@@ -25,6 +26,7 @@ public class ball : MonoBehaviour {
 		initPos = transform.position;
 		initSpeed = speed;
 		frozen = false;
+		collide = true;
 	}
 
 	// Update is called once per frame
@@ -95,7 +97,7 @@ public class ball : MonoBehaviour {
 				aux.transform.position += new Vector3(25, 25, 0);
                 ((SpriteRenderer) other.gameObject.GetComponent("SpriteRenderer")).color = new Color(0.674f,0.196f,0.196f,1f); //172 50 50 255
 			}
-		} else {
+		} else if(collide){
 			speed *= 1.01f;
             Movement mvtScr = GameObject.Find("Player").GetComponent<Movement>();
 			mvtScr.score += 5;
@@ -174,30 +176,15 @@ public class ball : MonoBehaviour {
 				}
 			}
 
-
-
-//            if(direction == new Vector3(1f,1f,0)){ //right-up
-//				if(transform.position.y > otherMinY && transform.position.y < otherMaxY) //right
-//					direction = new Vector3(-1f, 1f, 0);
-//				else //up
-//					direction = new Vector3(1f, -1f, 0);
-//			} else if(direction == new Vector3(-1f, 1f, 0)) { //left-up
-//				if(transform.position.y > otherMinY && transform.position.y < otherMaxY) //left
-//					direction = new Vector3(1f, 1f, 0);
-//				else //up
-//					direction = new Vector3(-1f, -1f, 0);
-//			}else if(direction == new Vector3(1f, -1f, 0)) { //down-right
-//				if(transform.position.x > otherMinX && transform.position.x < otherMaxX) //down
-//					direction = new Vector3(1f, 1f, 0); 
-//				else //right
-//					direction = new Vector3(-1f, -1f, 0);
-//			} else { //down-left
-//				if ((transform.position.x > otherMinX && transform.position.x < otherMaxX)) //down
-//					direction = new Vector3(-1f, 1f, 0);
-//				else //left
-//					direction = new Vector3(1f, -1f, 0);
-//			}
+			collide = false;
 		}
 	}
 
+	private void OnCollisionExit2D(Collision2D other) {
+		bool iswallh = other.gameObject.CompareTag("WallH");
+		bool iswallv = other.gameObject.CompareTag("WallV");
+		if (!iswallh && !iswallv) {
+			collide = true;
+		}
+	}
 }
