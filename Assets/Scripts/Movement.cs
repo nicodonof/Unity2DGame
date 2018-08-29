@@ -51,6 +51,9 @@ public class Movement : MonoBehaviour {
 		foreach (var t in tails) {
 			DestroyImmediate(t);
 		}
+		foreach(GameObject wall in walls){
+			((SpriteRenderer) wall.GetComponent("SpriteRenderer")).color = Color.white;
+		}
 		tails.Clear();
 		transform.position = initPos;
 		tryAgain.SetActive(false);
