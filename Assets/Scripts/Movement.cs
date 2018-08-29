@@ -192,11 +192,12 @@ public class Movement : MonoBehaviour {
 				}
 				return;
 			}
-			if (Input.GetKeyDown(KeyCode.C)) {
-                LocalStorage.coins++;
-				coins.GetComponent<Text>().text = LocalStorage.coins.ToString(); 
-				coin.Play();
-			}
+			// Ya lo hace mainmenuscript
+			// if (Input.GetKeyDown(KeyCode.C)) {
+            //     LocalStorage.coins++;
+			// 	coins.GetComponent<Text>().text = LocalStorage.coins.ToString(); 
+			// 	coin.Play();
+			// }
 			if(cdDead < 0){
 				SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
 			} else {
