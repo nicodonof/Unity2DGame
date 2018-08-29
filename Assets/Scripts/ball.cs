@@ -26,7 +26,7 @@ public class ball : MonoBehaviour {
 	void Update () {
         // speed = Mathf.Min(1f, speed - (score / 10000f))
 		if(!GameObject.Find("Player").GetComponent<Movement>().isDead && freezedCd <= 0){
-			transform.position += speed * Time.deltaTime * direction;       
+			transform.position += speed * Time.deltaTime * direction;
 		} else {
 			freezedCd -= Time.deltaTime;
 		}
@@ -86,9 +86,11 @@ public class ball : MonoBehaviour {
 				GameObject.Find("Player").GetComponent<Movement>().isDead = true;
 				tryAgain.SetActive(true);
 			}else{
+				GameObject.Find("Player").GetComponent<Movement>().score += 10;
 				((SpriteRenderer) other.gameObject.GetComponent("SpriteRenderer")).color = Color.red;
 			}
 		} else {
+			GameObject.Find("Player").GetComponent<Movement>().score += 5;
 			if(direction == new Vector3(1f,1f,0)){
 				if((transform.position.y > otherMinY && transform.position.y < otherMaxY))
 					direction = new Vector3(-1f, 1f, 0);
