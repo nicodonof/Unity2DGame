@@ -30,6 +30,7 @@ public class ball : MonoBehaviour {
 		} else {
 			freezedCd -= Time.deltaTime;
 		}
+		// Debug.Log(freezedCd);
 	}
 
 	private void OnCollisionExit2D(Collision2D other) {
@@ -38,18 +39,25 @@ public class ball : MonoBehaviour {
 		// }
 	}
 
-	private void OnCollisionEnter2D(Collision2D other) {
-		if(other.gameObject.tag == "Player" && freezedCd > 0){
+	private void OnCollisionStay2D(Collision2D other) {
+        if (other.gameObject.tag == "Player" && freezedCd > 0){
+			// Debug.Log("STAY" + freezedCd);
             freezedCd = 1;
-		}
+        }
+	}
+
+	private void OnCollisionEnter2D(Collision2D other) {
+        if (other.gameObject.tag == "Player" && freezedCd > 0){
+            freezedCd = 1;
+        }	
 		if(other.gameObject.name == "Player"){
             freezedCd = 1;
 		}
-        float ballMaxY = transform.position.y + transform.GetComponent<CircleCollider2D>().radius;
-        float ballMaxX = transform.position.x + transform.GetComponent<CircleCollider2D>().radius;
+        // float ballMaxY = transform.position.y + transform.GetComponent<CircleCollider2D>().radius;
+        // float ballMaxX = transform.position.x + transform.GetComponent<CircleCollider2D>().radius;
 
-        float ballMinY = transform.position.y - transform.GetComponent<CircleCollider2D>().radius;
-        float ballMinX = transform.position.x - transform.GetComponent<CircleCollider2D>().radius;
+        // float ballMinY = transform.position.y - transform.GetComponent<CircleCollider2D>().radius;
+        // float ballMinX = transform.position.x - transform.GetComponent<CircleCollider2D>().radius;
 
         float otherMaxY = other.transform.position.y + transform.GetComponent<Collider2D>().bounds.size.y / 2;
         float otherMaxX = other.transform.position.x + transform.GetComponent<Collider2D>().bounds.size.x / 2;
