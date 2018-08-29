@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ball : MonoBehaviour {
 
@@ -96,12 +97,23 @@ public class ball : MonoBehaviour {
 				GameObject.Find("Player").GetComponent<Movement>().isDead = true;
 				tryAgain.SetActive(true);
 			}else{
-				GameObject.Find("Player").GetComponent<Movement>().score += 10;
+				Movement mvtScr = GameObject.Find("Player").GetComponent<Movement>();
+				mvtScr.score += 10;
+				GameObject.Find("Score").GetComponent<Text>().text = mvtScr.score.ToString();
+				GameObject aux = GameObject.Find("IndicatorPool").GetComponent<PoolManager>().getIndicator();
+				GameObject cam = GameObject.Find("Main Camera");
+				aux.GetComponent<Text>().text = "+5";
 				((SpriteRenderer) other.gameObject.GetComponent("SpriteRenderer")).color = Color.red;
 			}
 		} else {
-			GameObject.Find("Player").GetComponent<Movement>().score += 5;
-			if(direction == new Vector3(1f,1f,0)){
+            Movement mvtScr = GameObject.Find("Player").GetComponent<Movement>();
+			mvtScr.score += 5;
+            GameObject.Find("Score").GetComponent<Text>().text = mvtScr.score.ToString();
+            GameObject aux = GameObject.Find("IndicatorPool").GetComponent<PoolManager>().getIndicator();
+            GameObject cam = GameObject.Find("Main Camera");
+			aux.GetComponent<Text>().text = "+5";
+            aux.transform.position = cam.GetComponent<Camera>().WorldToScreenPoint(transform.position);
+            if(direction == new Vector3(1f,1f,0)){
 				if((transform.position.y > otherMinY && transform.position.y < otherMaxY))
 					direction = new Vector3(-1f, 1f, 0);
 				else

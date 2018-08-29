@@ -181,7 +181,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d06a62c35eb1c1e429df42cbee324ab7, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -537,6 +537,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114992158718600492, guid: 3b7ec5a3ab9e77f4d881f8b6ad61177c,
         type: 2}
+      propertyPath: tryAgain
+      value: 
+      objectReference: {fileID: 144033023}
+    - target: {fileID: 114992158718600492, guid: 3b7ec5a3ab9e77f4d881f8b6ad61177c,
+        type: 2}
       propertyPath: cant
       value: 
       objectReference: {fileID: 2039288241}
@@ -550,11 +555,6 @@ Prefab:
       propertyPath: coin
       value: 
       objectReference: {fileID: 71140756}
-    - target: {fileID: 114992158718600492, guid: 3b7ec5a3ab9e77f4d881f8b6ad61177c,
-        type: 2}
-      propertyPath: tryAgain
-      value: 
-      objectReference: {fileID: 144033023}
     - target: {fileID: 114992158718600492, guid: 3b7ec5a3ab9e77f4d881f8b6ad61177c,
         type: 2}
       propertyPath: walls.Array.data[0]
@@ -675,6 +675,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114003160858550190, guid: 9142d31672c5afe4a959886625ac397a,
+        type: 2}
+      propertyPath: m_Text
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9142d31672c5afe4a959886625ac397a, type: 2}
   m_IsPrefabAsset: 0
@@ -704,7 +709,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: df14cd38361de09489d366d397021d57, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1034,7 +1039,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6eecd4b4e2944de4393f18e914d0a7c2, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

@@ -28,8 +28,9 @@ public class Movement : MonoBehaviour {
 	private bool encolate;
 	private int encoDir;
 	private Vector3 encoVector;
+    private int scoreCd;
 
-	void Start () {
+    void Start () {
 		direction = new Vector3(1, 0, 0);
 		newVector = direction;
 		score = 0;
@@ -41,6 +42,7 @@ public class Movement : MonoBehaviour {
 		initPos = new Vector3(1/3f-0.15f, 1/3f-0.15f, 0f);
 		scoreDisplay = GameObject.Find("Score");
 		encoDir = -1;
+		scoreCd = 0;
 	}
 
 	void Restart() {
@@ -50,6 +52,7 @@ public class Movement : MonoBehaviour {
 		encoDir = -1;
 		currDir = 0;
 		score = 0;
+		scoreCd = 0;
 		cd = initCd;
 		foreach (var t in tails) {
 			DestroyImmediate(t);
@@ -77,7 +80,7 @@ public class Movement : MonoBehaviour {
 		}
 		
 		
-		if (Input.GetKeyDown(KeyCode.D) && (direction.x >= 0 || encolate)) {
+		if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && (direction.x >= 0 || encolate)) {
 			if (newDirection != 0 && encolate) {
 				encoVector = new Vector3(1,0,0);
 				encoDir = 0;
@@ -86,7 +89,7 @@ public class Movement : MonoBehaviour {
 				newDirection = 0;
 			}
 		}
-		if (Input.GetKeyDown(KeyCode.A) && (direction.x <= 0 || encolate)) {
+		if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && (direction.x <= 0 || encolate)) {
 			if (newDirection != 1 && encolate) {
 				encoVector = new Vector3(-1, 0, 0);
 				encoDir= 1;
@@ -95,7 +98,7 @@ public class Movement : MonoBehaviour {
 				newDirection = 1;	
 			}
 		}
-		if (Input.GetKeyDown(KeyCode.W) && (direction.y >= 0 || encolate)) {
+		if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && (direction.y >= 0 || encolate)) {
 			if (newDirection != 2 && encolate) {
 				encoVector = new Vector3(0,1,0);
 				encoDir = 2;
@@ -104,7 +107,7 @@ public class Movement : MonoBehaviour {
 				newDirection = 2;
 			}
 		}
-		if (Input.GetKeyDown(KeyCode.S) && (direction.y <= 0 || encolate)) {
+		if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && (direction.y <= 0 || encolate)) {
 			if (newDirection != 3 && encolate) {
 				encoVector = new Vector3(0,-1,0);
 				encoDir = 3;
@@ -150,9 +153,14 @@ public class Movement : MonoBehaviour {
 			}
 			newDirection = -1;
 			transform.position += direction / grid;
-			score++;
+			if(scoreCd > 0){
+				scoreCd--;
+			} else {
+				scoreCd = 5;
+				score++;
+				scoreDisplay.GetComponent<Text>().text = score.ToString();
+			}
 			cd = Math.Max(0.000001f ,initCd - (float) Math.Log10(score) * 0.05f);
-			scoreDisplay.GetComponent<Text>().text = score.ToString();
 
 			
 		}
@@ -208,8 +216,11 @@ public class Movement : MonoBehaviour {
 			// Debug.Log(GameObject.Find("IndicatorPool").ToString());
 			GameObject aux = GameObject.Find("IndicatorPool").GetComponent<PoolManager>().getIndicator();
 			GameObject cam = GameObject.Find("Main Camera");
+            aux.GetComponent<Text>().text = "+10";
 			// cam.GetComponent<Camera>().WorldToScreenPoint(transform.position);
 			aux.transform.position = cam.GetComponent<Camera>().WorldToScreenPoint(transform.position);
+			scoreDisplay.GetComponent<Text>().text = score.ToString();
+
     	}
 	}
 
