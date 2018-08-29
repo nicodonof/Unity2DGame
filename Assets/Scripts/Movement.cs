@@ -79,6 +79,7 @@ public class Movement : MonoBehaviour {
 		scoreDisplay.GetComponent<Text>().text = "0";
 		tailCount = 0;
 		GameObject.Find("Background Music").GetComponent<AudioSource>().Play();
+		LocalStorage.coins-=2;
 	}
 
 	// Update is called once per frame
