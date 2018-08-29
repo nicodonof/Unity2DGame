@@ -91,7 +91,7 @@ public class ball : MonoBehaviour {
 				aux.GetComponent<Text>().text = "+5";
                 aux.transform.position = cam.GetComponent<Camera>().WorldToScreenPoint(transform.position);
 				aux.transform.position += new Vector3(25, 25, 0);
-                ((SpriteRenderer) other.gameObject.GetComponent("SpriteRenderer")).color = Color.red;
+                ((SpriteRenderer) other.gameObject.GetComponent("SpriteRenderer")).color = new Color(0.674f,0.196f,0.196f,1f); //172 50 50 255
 			}
 		} else {
 			speed *= 1.01f;
